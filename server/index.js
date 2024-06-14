@@ -15,14 +15,9 @@ const cors = require('cors')
 app.use(express.json())
 app.use(cors())
 
-
-app.get("/api/books/",tokenVerification)
-app.use("/api/books", booksRoutes)
-
-app.get("/api/users/",tokenVerification)
-
-
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
+
+app.use("/api/books/", tokenVerification, booksRoutes)
 const port = process.env.PORT || 8080
 app.listen(port, () => console.log(`Nasłuchiwanie na porcie ${port}`))
