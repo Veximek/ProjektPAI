@@ -16,7 +16,9 @@ const AddBook = () => {
     const newBook = { title, author, description };
       
     try {
-      const res = await axios.post('http://localhost:8080/api/books', newBook);
+      const res = await axios.post('http://localhost:8080/api/books',newBook, { headers: {
+       "x-access-token": localStorage.getItem("token")
+      }});
       setMessage('Book added successfully!');
       setTitle('');
       setAuthor('');
